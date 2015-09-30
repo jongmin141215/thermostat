@@ -49,12 +49,19 @@ $(function() {
     displayEnergyUse();
   })
 
-  Weather.getCurrent('London', function(current) {
-    $('#currentTemp').text(current.temperature() - 273.15);
+  $.ajax({
+    url: 'http://api.openweathermap.org/data/2.5/weather?q=London&mode=html',
+    success: function() {
+      Weather.getCurrent('London', function(current) {
+        $('#currentTemp').text(current.temperature() - 273.15);
+      Weather.getCurrent('London', function(current) {
+        $('#currentCond').text(current.conditions());
+      })
+      })
+    }
   });
-  Weather.getCurrent('London', function(current) {
-    $('#currentCond').text(current.conditions());
-  });
+
+  // $.ajax();
   // Weather.getForecast('London', function(forecast) {
   //   $('#forecastHigh').text(forecast.high());
   // });
