@@ -5,19 +5,41 @@
     <title>Thermostat</title>
     <link rel="shortcut icon" type="image/png" href="lib/jasmine-2.3.4/jasmine_favicon.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="src/application.js"></script>
     <script src="src/Thermostat.js"></script>
+    <script src="src/Weather.js"></script>
+    <script src="src/application.js"></script>
+    <style>
+      #energy {
+        width: 100px;
+        height: 40px;
+      }
+      .green {
+        background-color: green;
+      }
+      .yellow {
+        background-color: yellow;
+      }
+      .red {
+        background-color: red;
+      }
+    </style>
   </head>
   <body>
+    <div id="temp"></div>
     <div>
-
-      <!-- <button id="increase">Increase</button>
-      <button>Decrease</button>
+      <button id="increase">Increase</button>
+      <button id="decrease">Decrease</button>
     </div>
-    <div>
-      <button>Power Saving ON</button>
-      <button>Power Saving OFF</button>
-    </div>
-    <button>Reset</button> -->
+    <button id="reset">Reset</button>
+    <form id="powerSaving" >
+      <input type="checkbox" checked>Powersaving mode
+    </form>
+    <div id="energy"></div>
+    Current Temperature:
+    <div id="currentTemp"></div>
+    Current Weather Conditions
+    <div id="currentCond"></div>
+    <div id="forecastHigh"></div>
+    <div id="forecastLow"></div>
   </body>
 </html>

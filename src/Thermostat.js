@@ -5,7 +5,11 @@ function Thermostat() {
 };
 
 Thermostat.prototype.increaseTemp = function() {
-  this.temperature ++;
+  if (this.temperature >= this.maxTemp) {
+    throw new Error('Cannot exceed the max temp')
+  } else {
+    this.temperature ++;
+  }
 };
 
 Thermostat.prototype.decreaseTemp = function() {
@@ -18,6 +22,9 @@ Thermostat.prototype.decreaseTemp = function() {
 
 Thermostat.prototype.powerSavingOn = function() {
   this.isPowerSaving = true;
+  if (this.temperature > 25) {
+    this.temperature = 25;
+  }
   this.maxTemp = 25;
 };
 
