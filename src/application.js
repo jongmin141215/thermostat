@@ -8,15 +8,13 @@ function displayEnergyUse() {
   if (thermostat.energyUsage() == 'Green') {
     $('#energy').removeClass('yellow red');
     $('#energy').addClass('green');
-  } if (thermostat.energyUsage() == 'Yellow') {
+  } else if (thermostat.energyUsage() == 'Yellow') {
     $('#energy').removeClass('red');
     $('#energy').addClass('yellow');
-  } if (thermostat.energyUsage() == 'Red') {
+  } else {
     $('#energy').addClass('red');
   }
 }
-//
-// function currentWeather
 
 $(function() {
   showTemp();
@@ -49,27 +47,38 @@ $(function() {
     displayEnergyUse();
   })
 
-  $.ajax({
-    url: 'http://api.openweathermap.org/data/2.5/weather?q=London&mode=html',
-    success: function() {
-      Weather.getCurrent('London', function(current) {
-        $('#currentTemp').text(current.temperature() - 273.15);
-      Weather.getCurrent('London', function(current) {
-        $('#currentCond').text(current.conditions());
-      })
-      })
+  var weatherUrl = 'http://api.openweathermap.org/data/2.5/weather?q='
+  var cityName = 'London';
+
+  $.ajax(weatherUrl + cityName, {
+    success: function(data) {
+      $('#currentTemp').text(cityName + ': ' + (data.main.temp - 273.15));
+      $('#currentCond').text(data.weather[0].description);
+    },
+    error: function() {
+      $('#currentTemp').text('The service is currently unavailable.\
+        Please try in 5 minutes')
     }
+  })
+
+  $('#searchButton').click(function(form) {
+    $('#anotherCity').text($('#city').val());
+
+    var cityName = $('#city').val();
+    $.ajax(weatherUrl + cityName, {
+      success: function(data) {
+        $('#anotherTemp').text(cityName + ': ' + (data.main.temp - 273.15));
+        $('#anotherCond').text(data.weather[0].description);
+      },
+      error: function() {
+        $('#anotherTemp').text('The service is currently unavailable.\
+          Please try in 5 minutes')
+      }
+    })
+
   });
 
-  // $.ajax();
-  // Weather.getForecast('London', function(forecast) {
-  //   $('#forecastHigh').text(forecast.high());
-  // });
-  // Weather.getForecast('London', function(forecast) {
-  //   $('#forecastLow').text(forecast.high());
-  //   $('#forecastLow').text(forecast.startAt());
-  //   $('#forecastLow').text(forecast.endAt());
-  // })
+
 
 
 });
