@@ -86,6 +86,7 @@ h1 {
 #currentTemp {
   position: relative;
   left: 10px;
+  display: inline-block;
 }
 #city {
   position: relative;
