@@ -52,8 +52,7 @@ $(function() {
 
   $.ajax(weatherUrl + cityName, {
     success: function(data) {
-      $('#currentTemp').text(cityName + ': ' + (data.main.temp - 273.15));
-      $('#currentCond').text(data.weather[0].description);
+      $('#currentTemp').text(cityName + ': ' + (Math.round(data.main.temp - 273.15)) + "ºC/ " + data.weather[0].description);
     },
     error: function() {
       $('#currentTemp').text('The service is currently unavailable.\
@@ -67,8 +66,7 @@ $(function() {
     var cityName = $('#city').val();
     $.ajax(weatherUrl + cityName, {
       success: function(data) {
-        $('#anotherTemp').text(cityName + ': ' + (data.main.temp - 273.15));
-        $('#anotherCond').text(data.weather[0].description);
+        $('#anotherTemp').text(cityName + ': ' + (Math.round(data.main.temp - 273.15)) + "ºC/ " + data.weather[0].description);
       },
       error: function() {
         $('#anotherTemp').text('The service is currently unavailable.\
@@ -77,8 +75,5 @@ $(function() {
     })
 
   });
-
-
-
 
 });
