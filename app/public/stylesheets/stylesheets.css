@@ -18,8 +18,8 @@ h1 {
   position: relative;
   top: 20px;
   left: 20px;
-  width: 400px;
-  height: 300px;
+  width: 405px;
+  height: 310px;
   border: 2px solid black;
   border-radius: 15%;
   background-color: #d3d3d3;
@@ -67,7 +67,7 @@ h1 {
   height: 30px;
   border: 1px solid black;
   border-radius: 15%;
-  display: inline-block;
+  display: block;
 }
 #temp {
   position: relative;

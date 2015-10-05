@@ -6,6 +6,7 @@ class App < Sinatra::Base
   end
 
   post '/' do
+    p params
     redirect to '/'
   end
 end

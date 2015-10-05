@@ -74,12 +74,24 @@ $(function() {
       }
     })
   });
+  //
+  // $('#save').click(function(data) {
+  //   $.ajax({type: 'POST', url: '/', temperature: thermostat.temperature,
+  //   success: function(data) {alert('Your temperature setting is successfully saved.');},
+  //   error: function(data) {alert('There was a problem saving the temperature setting. Please try again.');}});
+  // })
 
   $('#save').click(function() {
-    $.post('/', function() {
-      $('#hiddenTemp').val();
-    })
-  })
+    $.post('/', { temperature: thermostat.temperature })
+      .done(function() {
+        alert('Your temperature setting is successfully saved.');})
+      .fail(function() {
+        alert('There was a problem saving the temperature setting. Please try again.');})
+  });
+
+
+
+
 
 
 });
