@@ -73,7 +73,13 @@ $(function() {
           Please try in 5 minutes')
       }
     })
-
   });
+
+  $('#save').click(function() {
+    $.post('/', function() {
+      $('#hiddenTemp').val();
+    })
+  })
+
 
 });
